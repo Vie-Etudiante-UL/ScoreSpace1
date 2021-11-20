@@ -17,7 +17,7 @@ namespace Acteurs
         [SerializeField] private float distanceCourseMax;
         [SerializeField] private float distanceParcourue;
         private Vector3 positiondepart;
-
+        [SerializeField] private float rayonDetection;
         [Header("Viande")] 
         [SerializeField] private Transform accumulateurViande;
         [SerializeField] private GameObject viandeBase;
@@ -45,6 +45,11 @@ namespace Acteurs
             GererAllerRetour();
         }
 
+        private void FixedUpdate()
+        {
+            DetecterAutres();
+        }
+
         private void GererAllerRetour()
         {
             if (surLAller)
@@ -53,20 +58,6 @@ namespace Acteurs
                 if (distanceParcourue >= distanceCourseMax) surLAller = false;
             }
             else Direction = (Soni.soni.transform.position - transform.position).normalized;
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.TryGetComponent(out Scientifique scienti))
-            {
-                Destroy(scienti.gameObject);
-                AjouterViande();
-                surLAller = false;
-            }
-            else if (other.TryGetComponent(out Soni soni))
-            {
-                if(!surLAller)soni.AssimilerClone(this, (int)scoreViande, viandes.Count);
-            }
         }
 
         private void AjouterViande()
@@ -79,6 +70,25 @@ namespace Acteurs
             decalageViande.y += decalageVerticalViandes * viandes.Count;
             viande.position = decalageViande;
             viandes.Add(viande);
+        }
+
+        private void DetecterAutres()
+        {
+            Collider2D[] autres = Physics2D.OverlapCircleAll(transform.position, rayonDetection);
+
+            foreach (Collider2D autre in autres)
+            {
+                if (autre.TryGetComponent(out Scientifique scienti))
+                {
+                    Destroy(scienti.gameObject);
+                    AjouterViande();
+                    surLAller = false;
+                }
+                else if (autre.TryGetComponent(out Soni soni))
+                {
+                    if(!surLAller)soni.AssimilerClone(this, (int)scoreViande, viandes.Count);
+                }
+            }
         }
     }
 }

@@ -11,7 +11,6 @@ namespace Acteurs
     [RequireComponent(typeof(Controles))]
     public class Soni : Acteur
     {
-
         private static Soni cela;
 
         public static Soni soni

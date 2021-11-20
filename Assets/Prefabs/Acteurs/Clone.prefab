@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6453490779350926828}
   - component: {fileID: 8475104342363250149}
   - component: {fileID: 3638365804264007210}
-  - component: {fileID: 1709380343677652296}
   m_Layer: 7
   m_Name: Clone
   m_TagString: Untagged
@@ -89,26 +88,11 @@ MonoBehaviour:
   deplacements: {fileID: 8475104342363250149}
   distanceCourseMax: 15
   distanceParcourue: 0
+  rayonDetection: 0
   accumulateurViande: {fileID: 3660253173290622108}
   viandeBase: {fileID: 1123864139415376665, guid: 47a5d8aabb0ee6045a2fcb86e24a0726, type: 3}
   multScoreViande: 1.5
   decalageVerticalViandes: 0.3
---- !u!58 &1709380343677652296
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3764613326435841993}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
 --- !u!1 &4483377601531230042
 GameObject:
   m_ObjectHideFlags: 0
