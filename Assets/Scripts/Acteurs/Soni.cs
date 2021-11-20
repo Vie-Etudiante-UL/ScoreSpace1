@@ -6,12 +6,22 @@ using UnityEngine;
 namespace Acteurs
 {
     [RequireComponent(typeof(Controles))]
-    public class Perso : Acteur
+    public class Soni : Acteur
     {
 
+        private static Soni cela;
+
+        public static Soni soni
+        {
+            get
+            {
+                if (!cela) cela = FindObjectOfType<Soni>();
+                return cela;
+            }
+        }
+        
         [SerializeField] private Controles controles;
-
-
+        
         protected override void OnValidate()
         {
             base.OnValidate();
@@ -32,6 +42,7 @@ namespace Acteurs
             if (controles.ControleDetecte("Bas", DetectionControle.estAppuye)) axes.y -= 1;
             deplacementsTopDown.Direction = axes;
         }
+        
         
     }
 }
