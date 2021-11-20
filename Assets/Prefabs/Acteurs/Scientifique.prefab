@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8817879139118865227}
-  - component: {fileID: 7013514920058131933}
-  m_Layer: 0
+  - component: {fileID: 1148061412954179537}
+  - component: {fileID: 760248153246913945}
+  - component: {fileID: 2388998672687382360}
+  m_Layer: 8
   m_Name: Scientifique
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +33,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7013514920058131933
+--- !u!50 &1148061412954179537
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817879139118865228}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &760248153246913945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817879139118865228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed76f3cf36e67f4890a3f453c3cda23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1148061412954179537}
+  vitesseMax: 0
+  acceleration: 0
+  deceleration: 0
+--- !u!114 &2388998672687382360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,5 +82,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63093e3d713d07949bea4bf27633bbdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  deplacementsTopDown: {fileID: 0}
+  rb: {fileID: 1148061412954179537}
+  deplacements: {fileID: 760248153246913945}

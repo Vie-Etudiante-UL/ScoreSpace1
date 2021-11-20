@@ -9,10 +9,11 @@ namespace Acteurs
     public class Controles : MonoBehaviour
     {
         [Serializable]
-        public struct Controle
+        private struct Controle
         {
             public string nom;
             public List<KeyCode> controles;
+            public List<int> indexSouris;
         }
 
         [SerializeField] private List<Controle> controles;
@@ -20,21 +21,22 @@ namespace Acteurs
         public bool ControleDetecte(string nomControle, DetectionControle typeDetection)
         {
             Controle controle = controles.Find(controle1 => controle1.nom == nomControle);
-            return ControleDetecte(controle.controles, typeDetection);
+            if (string.IsNullOrEmpty(controle.nom)) throw new ArgumentException(nomControle + "n'est pas un nom de controle existant");
+            return ControleDetecte(controle, typeDetection);
         }
         
-        public static bool ControleDetecte(IEnumerable<KeyCode> controles, DetectionControle typeDetection)
+        private bool ControleDetecte(Controle controle, DetectionControle typeDetection)
         {
             switch (typeDetection)
             {
                 case DetectionControle.estAppuye : 
-                    if (controles.Any(Input.GetKey)) return true;
+                    if (controle.controles.Any(Input.GetKey) || controle.indexSouris.Any(Input.GetMouseButton)) return true;
                     break;
                 case DetectionControle.quandEnfonce:
-                    if (controles.Any(Input.GetKeyDown)) return true;
+                    if (controle.controles.Any(Input.GetKeyDown) || controle.indexSouris.Any(Input.GetMouseButtonDown)) return true;
                     break;
                 case DetectionControle.quandRelache:
-                    if (controles.Any(Input.GetKeyUp)) return true;
+                    if (controle.controles.Any(Input.GetKeyUp) || controle.indexSouris.Any(Input.GetMouseButtonUp)) return true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeDetection), typeDetection, null);

@@ -7,12 +7,12 @@ namespace Acteurs
     {
         [Header("Refs")]
         [SerializeField] protected Rigidbody2D rb;
-        [SerializeField] protected DeplacementsTopDown deplacementsTopDown;
+        [SerializeField] protected DeplacementsTopDown deplacements;
 
         protected virtual void OnValidate()
         {
             if (!rb) TryGetComponent(out rb);
-            if (!deplacementsTopDown) TryGetComponent(out deplacementsTopDown);
+            if (!deplacements) TryGetComponent(out deplacements);
         }
     }
   

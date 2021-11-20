@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Acteurs
 {
@@ -21,6 +23,12 @@ namespace Acteurs
         }
         
         [SerializeField] private Controles controles;
+        [Header("Clonage")]
+        [SerializeField] private Clone cloneBase;
+        public bool peutCloner;
+        private int capaciteClone = 1;
+        private int clonesTires;
+        
         
         protected override void OnValidate()
         {
@@ -40,9 +48,28 @@ namespace Acteurs
             if (controles.ControleDetecte("Gauche", DetectionControle.estAppuye)) axes.x -= 1;
             if (controles.ControleDetecte("Haut", DetectionControle.estAppuye)) axes.y += 1;
             if (controles.ControleDetecte("Bas", DetectionControle.estAppuye)) axes.y -= 1;
-            deplacementsTopDown.Direction = axes;
+            deplacements.Direction = axes;
+
+            if (controles.ControleDetecte("Cloner", DetectionControle.quandRelache)) ClonerTirer();
         }
-        
-        
+
+        private void ClonerTirer()
+        {
+            if (!peutCloner || capaciteClone >= clonesTires) return;
+            if (Instantiate(cloneBase.gameObject, transform.position, new Quaternion())
+                .TryGetComponent(out Clone nvClone))
+            {
+                clonesTires++;
+                Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)
+                    .normalized;
+                nvClone.Direction = direction;
+            }
+        }
+
+        public void AssimilerClone(Clone cloneAAssimiler)
+        {
+            Destroy(cloneAAssimiler.gameObject);
+            clonesTires--;
+        }
     }
 }
