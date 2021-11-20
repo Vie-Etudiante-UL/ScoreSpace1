@@ -515,5 +515,6 @@ PrefabInstance:
       propertyPath: peutCloner
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8105004016359184321, guid: 84dc969f7c6fb934fb6bf487ae610087, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 84dc969f7c6fb934fb6bf487ae610087, type: 3}

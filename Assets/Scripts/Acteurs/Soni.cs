@@ -28,7 +28,8 @@ namespace Acteurs
         public bool peutCloner;
         private int capaciteClone = 1;
         private int clonesTires;
-        
+        [SerializeField] private int viandesPourLvlUp;
+        private int nbrViandes;
         
         protected override void OnValidate()
         {
@@ -55,7 +56,7 @@ namespace Acteurs
 
         private void ClonerTirer()
         {
-            if (!peutCloner || capaciteClone >= clonesTires) return;
+            if (!peutCloner || capaciteClone <= clonesTires) return;
             if (Instantiate(cloneBase.gameObject, transform.position, new Quaternion())
                 .TryGetComponent(out Clone nvClone))
             {
@@ -66,10 +67,16 @@ namespace Acteurs
             }
         }
 
-        public void AssimilerClone(Clone cloneAAssimiler)
+        public void AssimilerClone(Clone cloneAAssimiler, int scoreViande, int nbrViande)
         {
             Destroy(cloneAAssimiler.gameObject);
             clonesTires--;
+            nbrViandes += nbrViande;
+            while (nbrViandes >= viandesPourLvlUp)
+            {
+                nbrViandes = viandesPourLvlUp - nbrViandes;
+                capaciteClone++;
+            }
         }
     }
 }

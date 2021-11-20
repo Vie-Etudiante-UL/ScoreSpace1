@@ -12,6 +12,7 @@ namespace Acteurs
         protected virtual void OnValidate()
         {
             if (!rb) TryGetComponent(out rb);
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             if (!deplacements) TryGetComponent(out deplacements);
         }
     }
