@@ -17,7 +17,7 @@ public class CameraMan : MonoBehaviour
         }
     }
     [Header("Refs")]
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera cam;
     [SerializeField] private GameObject objetASuivre;
     [Header("Propriétés Caméra")]
     [SerializeField] private float tmpsPrAttendreObjet;
@@ -45,7 +45,7 @@ public class CameraMan : MonoBehaviour
     public float Dezoom
     {
         get => dezoom;
-        set => camera.orthographicSize = value;
+        set => cam.orthographicSize = value;
     }
 
 
@@ -54,8 +54,8 @@ public class CameraMan : MonoBehaviour
 
     private void OnValidate()
     {
-        if (!camera) TryGetComponent(out camera);
-        camera.orthographicSize = dezoom;
+        if (!cam) TryGetComponent(out cam);
+        cam.orthographicSize = dezoom;
     }
 
     // Start is called before the first frame update
@@ -104,22 +104,22 @@ public class CameraMan : MonoBehaviour
 
     public bool EstDansCamera(Vector3 position)
     {
-        Vector2 pos = camera.WorldToScreenPoint(position);
+        Vector2 pos = cam.WorldToScreenPoint(position);
         return !(pos.x < 0 || pos.y < 0 ||
-                 pos.x > camera.scaledPixelWidth || pos.y > camera.scaledPixelHeight);
+                 pos.x > cam.scaledPixelWidth || pos.y > cam.scaledPixelHeight);
     }
     
     private void LimiterPosCam()
     {
         
         //en partant du bord gauche, dans le sens horaire
-        var position = camera.transform.position;
+        var position = cam.transform.position;
         Vector4 bordsCam = new Vector4
         {
-            x = position.x - camera.orthographicSize * camera.aspect,
-            y = position.y + camera.orthographicSize,
-            z = position.x + camera.aspect * camera.orthographicSize,
-            w = position.y - camera.orthographicSize
+            x = position.x - cam.orthographicSize * cam.aspect,
+            y = position.y + cam.orthographicSize,
+            z = position.x + cam.aspect * cam.orthographicSize,
+            w = position.y - cam.orthographicSize
         };
         Vector4 limites = new Vector4
         {
