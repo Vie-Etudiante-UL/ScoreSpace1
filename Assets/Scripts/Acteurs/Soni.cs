@@ -32,6 +32,14 @@ namespace Acteurs
         private IEnumerator coolDownClonage;
         [SerializeField] private int viandesPourLvlUp;
         private int nbrViandes;
+        
+        public int CapaciteClone => capaciteClone;
+
+        public int ClonesTires => clonesTires;
+
+        public int ViandesPourLvlUp => viandesPourLvlUp;
+
+        public int NbrViandes => nbrViandes;
 
         [Header("Inteface Lvl Up")] 
         [SerializeField] private Canvas interfaceLvlUp;

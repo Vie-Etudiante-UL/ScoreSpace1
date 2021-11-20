@@ -114,7 +114,6 @@ GameObject:
   - component: {fileID: 1035168507339063542}
   - component: {fileID: 1035168507339063541}
   - component: {fileID: 1035168507339063538}
-  - component: {fileID: 8105004016359184321}
   m_Layer: 6
   m_Name: Soni
   m_TagString: Untagged
@@ -192,7 +191,7 @@ MonoBehaviour:
   controles: {fileID: 1035168507339063541}
   cloneBase: {fileID: 3638365804264007210, guid: b685808f27eefa94390eeb428e23841e, type: 3}
   peutCloner: 1
-  viandesPourLvlUp: 20
+  viandesPourLvlUp: 15
   interfaceLvlUp: {fileID: 5375451559246489661}
   timer: {fileID: 2136492571062439631}
   tmpsPourLvlUp: 2
@@ -240,22 +239,6 @@ MonoBehaviour:
   vitesseMax: 8
   acceleration: 20
   deceleration: 30
---- !u!58 &8105004016359184321
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035168507339063536}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.7096453
 --- !u!1 &1035168507707022156
 GameObject:
   m_ObjectHideFlags: 0
