@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime;
@@ -28,18 +29,31 @@ namespace Acteurs
         public bool peutCloner;
         private int capaciteClone = 1;
         private int clonesTires;
+        private IEnumerator coolDownClonage;
         [SerializeField] private int viandesPourLvlUp;
         private int nbrViandes;
-        
+
+        [Header("Inteface Lvl Up")] 
+        [SerializeField] private Canvas interfaceLvlUp;
+
+        [SerializeField] private Slider timer;
+        [SerializeField] private float tmpsPourLvlUp;
+        private IEnumerator coolDownlvlUp;
+
         protected override void OnValidate()
         {
             base.OnValidate();
             if (!controles) TryGetComponent(out controles);
         }
 
+        private void Awake()
+        {
+            OuvrirInterfaceLvlUp(false);
+        }
+
         void Start()
         {
-        
+            
         }
 
         private void Update()
@@ -64,6 +78,7 @@ namespace Acteurs
                 Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)
                     .normalized;
                 nvClone.Direction = direction;
+                LancerCoolDownClonage(1f);
             }
         }
 
@@ -72,11 +87,67 @@ namespace Acteurs
             Destroy(cloneAAssimiler.gameObject);
             clonesTires--;
             nbrViandes += nbrViande;
-            while (nbrViandes >= viandesPourLvlUp)
+            if (nbrViandes >= viandesPourLvlUp)
             {
                 nbrViandes = viandesPourLvlUp - nbrViandes;
-                capaciteClone++;
+                OuvrirInterfaceLvlUp(true);
             }
+        }
+
+        public void AjouterCapaciteClone()
+        {
+            capaciteClone++;
+        }
+
+        public void OuvrirInterfaceLvlUp(bool ouvrir)
+        {
+            if(coolDownlvlUp != null) StopCoroutine(coolDownlvlUp);
+            if (ouvrir)
+            {
+                coolDownlvlUp = CoolDownLvlUp();
+                StartCoroutine(coolDownlvlUp);
+                peutCloner = false;
+            }
+            else LancerCoolDownClonage(0.2f);
+
+            
+            interfaceLvlUp.gameObject.SetActive(ouvrir);
+            Time.timeScale = ouvrir ? 0 : 1;
+            
+        }
+
+        private void LancerCoolDownClonage(float tmps)
+        {
+            if(coolDownClonage != null) StopCoroutine(coolDownClonage);
+            coolDownClonage = CoolDownClonage(tmps);
+            StartCoroutine(coolDownClonage);
+        }
+        
+        private IEnumerator CoolDownClonage(float tmps)
+        {
+            yield return new WaitForSeconds(tmps);
+            peutCloner = true;
+            coolDownClonage = null;
+        }
+        
+        private IEnumerator CoolDownLvlUp()
+        {
+            float tmps = 0;
+
+            while (tmps < tmpsPourLvlUp)
+            {
+                yield return new WaitForEndOfFrame();
+                tmps += Time.unscaledDeltaTime;
+                timer.value = Mathf.Lerp(0, 1, tmps / tmpsPourLvlUp);
+            }
+            OuvrirInterfaceLvlUp(false);
+
+            coolDownlvlUp = null;
+        }
+
+        public void AjouterScore()
+        {
+            GameManager.AjouterScore();
         }
     }
 }
