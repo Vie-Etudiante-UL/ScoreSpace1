@@ -146,7 +146,6 @@ namespace Acteurs
                 {
                     if(!surLAller)soni.AssimilerClone(this, (int)scoreViande);
                 }
-
                 if (autre.gameObject.layer == 9)
                 {
                     surLAller = false;
