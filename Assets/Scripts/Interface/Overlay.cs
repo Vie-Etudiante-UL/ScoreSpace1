@@ -7,6 +7,17 @@ using UnityEngine.UI;
 
 public class Overlay : MonoBehaviour
 {
+    private static Overlay cela;
+
+    public static Overlay Singleton
+    {
+        get
+        {
+            if (!cela) cela = FindObjectOfType<Overlay>();
+            return cela;
+        }
+    }
+    
     [Header("Capacité en Clones")]
     [SerializeField] private Transform capaciteClones;
     [SerializeField] private Image iconeCloneBase;

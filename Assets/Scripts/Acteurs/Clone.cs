@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 namespace Acteurs
 {
@@ -81,13 +82,13 @@ namespace Acteurs
             
             estActif = false;
             deplacements.peutSeDeplacer = false;
-            accumulateurViande.gameObject.SetActive(false);
-            
+
             UnityEvent[] eventsAberation = aberation.LancerAnim();
             eventsAberation[0].AddListener(() =>
             {
                 sprRend.gameObject.SetActive(false);
                 quandAberationEstGrande.Invoke();
+                accumulateurViande.gameObject.SetActive(false);
             });
             eventsAberation[1].AddListener(() =>
             {
@@ -115,6 +116,11 @@ namespace Acteurs
             
             Vector3 decalageViande = viande.position;
             decalageViande.y += decalageVerticalViandes * viandes.Count;
+            decalageViande.x += Random.Range(-0.1f, 0.1f);
+            if (viande.TryGetComponent(out SpriteRenderer sprRendViande))
+            {
+                sprRendViande.flipX = Random.value > 0.5f;
+            }
             viande.position = decalageViande;
             viandes.Add(viande);
         }
@@ -150,11 +156,14 @@ namespace Acteurs
             UnityEvent[] eventsAberation = aberation.LancerAnim();
             eventsAberation[0].AddListener(() =>
             {
+                
+            });
+            eventsAberation[1].AddListener(() =>
+            {
                 estActif = true;
                 deplacements.peutSeDeplacer = true;
                 surLAller = false;
-                print(deplacements.peutSeDeplacer);    
-            });
+            } );
         }
     }
 }

@@ -194,10 +194,10 @@ MonoBehaviour:
   peutCloner: 1
   capaciteClone: 1
   viandesPourLvlUp: 15
-  rayonSpawnClone: 0.7
+  rayonSpawnClone: 2
   interfaceLvlUp: {fileID: 5375451559246489661}
   timer: {fileID: 2136492571062439631}
-  tmpsPourLvlUp: 2
+  chairesPourLvlUp: 6
 --- !u!114 &1035168507339063541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,8 +240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1035168507339063540}
   vitesseMax: 8
-  acceleration: 20
-  deceleration: 30
+  acceleration: 30
+  deceleration: 60
   peutSeDeplacer: 0
 --- !u!1 &1035168507707022156
 GameObject:
@@ -511,16 +511,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9150943, g: 0.8737303, b: 0.48776254, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: 9e94387150acf7747a345d6da3da417d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -790,15 +790,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8490566, g: 0.53266287, b: 0.53266287, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -9169642733941721999, guid: 4c711d970e8f256438434289cc9c3a18, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6453490779350926828}
   - component: {fileID: 8475104342363250149}
   - component: {fileID: 3638365804264007210}
+  - component: {fileID: 465572480242685650}
   m_Layer: 7
   m_Name: Clone
   m_TagString: Untagged
@@ -90,13 +91,29 @@ MonoBehaviour:
   deplacements: {fileID: 8475104342363250149}
   distanceCourseMax: 15
   distanceParcourue: 0
-  rayonDetection: 0.7
+  rayonDetection: 1
   accumulateurViande: {fileID: 3660253173290622108}
   viandeBase: {fileID: 1123864139415376665, guid: 47a5d8aabb0ee6045a2fcb86e24a0726, type: 3}
   multScoreViande: 1.5
   decalageVerticalViandes: 0.3
   sprRend: {fileID: 2890507858907829066}
   aberation: {fileID: 8510159425873725877}
+--- !u!70 &465572480242685650
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764613326435841993}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.000000017590377, y: 0.1475588}
+  m_Size: {x: 0.6792441, y: 0.2790235}
+  m_Direction: 1
 --- !u!1 &4483377601531230042
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4483377601531230042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.756, z: 0}
+  m_LocalPosition: {x: 0, y: 1.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8219048360935394098}

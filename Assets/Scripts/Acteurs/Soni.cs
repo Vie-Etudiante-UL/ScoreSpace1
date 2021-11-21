@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,7 +47,7 @@ namespace Acteurs
         [SerializeField] private Canvas interfaceLvlUp;
 
         [SerializeField] private Slider timer;
-        [SerializeField] private float tmpsPourLvlUp;
+        [SerializeField] private float chairesPourLvlUp;
         private IEnumerator coolDownlvlUp;
 
         protected override void OnValidate()
@@ -162,7 +163,7 @@ namespace Acteurs
         {
             if (nbrViandes >= viandesPourLvlUp && !interfaceLvlUp.gameObject.activeSelf)
             {
-                nbrViandes = viandesPourLvlUp - nbrViandes;
+                nbrViandes -= viandesPourLvlUp;
                 OuvrirInterfaceLvlUp(true);
             }
         }
@@ -171,11 +172,11 @@ namespace Acteurs
         {
             float tmps = 0;
 
-            while (tmps < tmpsPourLvlUp)
+            while (tmps < chairesPourLvlUp)
             {
                 yield return new WaitForEndOfFrame();
                 tmps += Time.unscaledDeltaTime;
-                timer.value = Mathf.Lerp(0, 1, tmps / tmpsPourLvlUp);
+                timer.value = Mathf.Lerp(0, 1, tmps / chairesPourLvlUp);
             }
             OuvrirInterfaceLvlUp(false);
 
