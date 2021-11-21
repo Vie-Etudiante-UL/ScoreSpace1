@@ -52,15 +52,17 @@ public class Overlay : MonoBehaviour
                     nvlleIcone.gameObject.SetActive(true);
                 }
             }
+        }
 
-            if (Soni.soni.ClonesTires != clonesTires)
+        if (Soni.soni.ClonesTires != clonesTires)
+        {
+            clonesTires = Soni.soni.ClonesTires;
+            int cloneATeindre = clonesTires;
+            
+            for (int i = listeIcones.Count - 1; i >= 0; i--)
             {
-                for (int i = 0; i < listeIcones.Count; i++)
-                {
-                    listeIcones[i].color = i > clonesTires ? teinteCloneTire : iconeCloneBase.color;
-                }
-
-                clonesTires = Soni.soni.ClonesTires;
+                listeIcones[i].color = cloneATeindre > 0 ? teinteCloneTire : iconeCloneBase.color;
+                cloneATeindre--;
             }
         }
     }

@@ -23,13 +23,15 @@ namespace Acteurs
         }
         
         [SerializeField] private Controles controles;
-        [Header("Clonage")]
+        [Header("Clonage")] 
+        [SerializeField] private Animator aberationChaireBase;
         [SerializeField] private Clone cloneBase;
         public bool peutCloner;
-        private int capaciteClone = 1;
+        [SerializeField] private int capaciteClone = 1;
         private int clonesTires;
         private IEnumerator coolDownClonage;
         [SerializeField] private int viandesPourLvlUp;
+        [SerializeField] private float rayonSpawnClone;
         private int nbrViandes;
         
         public int CapaciteClone => capaciteClone;
@@ -53,6 +55,12 @@ namespace Acteurs
             if (!controles) TryGetComponent(out controles);
         }
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, rayonSpawnClone);
+        }
+
         private void Awake()
         {
             OuvrirInterfaceLvlUp(false);
@@ -73,7 +81,12 @@ namespace Acteurs
             deplacements.Direction = axes;
 
             if (controles.ControleDetecte("Cloner", DetectionControle.quandRelache)) ClonerTirer();
+            
+            VerifLevelUp();
         }
+        
+        
+        #region Clones
 
         private void ClonerTirer()
         {
@@ -81,48 +94,34 @@ namespace Acteurs
             if (Instantiate(cloneBase.gameObject, transform.position, new Quaternion())
                 .TryGetComponent(out Clone nvClone))
             {
+                peutCloner = false;
                 clonesTires++;
                 Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position)
                     .normalized;
-                nvClone.Direction = direction;
-                LancerCoolDownClonage(1f);
+                Vector3 nvllePosition = nvClone.transform.position + (Vector3)direction * rayonSpawnClone;
+                nvClone.transform.position = nvllePosition;
+                
+                nvClone.Init(direction).AddListener(() =>
+                {
+                    peutCloner = true;
+                });
             }
         }
 
-        public void AssimilerClone(Clone cloneAAssimiler, int scoreViande, int nbrViande)
+        public void AssimilerClone(Clone cloneAAssimiler, int nbrViande)
         {
-            Destroy(cloneAAssimiler.gameObject);
-            clonesTires--;
-            nbrViandes += nbrViande;
-            if (nbrViandes >= viandesPourLvlUp)
+            cloneAAssimiler.EtreAssimiler().AddListener(() =>
             {
-                nbrViandes = viandesPourLvlUp - nbrViandes;
-                OuvrirInterfaceLvlUp(true);
-            }
+                clonesTires--;
+                nbrViandes += nbrViande;
+            });
         }
 
         public void AjouterCapaciteClone()
         {
             capaciteClone++;
         }
-
-        public void OuvrirInterfaceLvlUp(bool ouvrir)
-        {
-            if(coolDownlvlUp != null) StopCoroutine(coolDownlvlUp);
-            if (ouvrir)
-            {
-                coolDownlvlUp = CoolDownLvlUp();
-                StartCoroutine(coolDownlvlUp);
-                peutCloner = false;
-            }
-            else LancerCoolDownClonage(0.2f);
-
-            
-            interfaceLvlUp.gameObject.SetActive(ouvrir);
-            Time.timeScale = ouvrir ? 0 : 1;
-            
-        }
-
+        
         private void LancerCoolDownClonage(float tmps)
         {
             if(coolDownClonage != null) StopCoroutine(coolDownClonage);
@@ -135,6 +134,37 @@ namespace Acteurs
             yield return new WaitForSeconds(tmps);
             peutCloner = true;
             coolDownClonage = null;
+        }
+
+        #endregion
+
+
+        #region Level Up
+
+        public void OuvrirInterfaceLvlUp(bool ouvrir)
+        {
+            if(coolDownlvlUp != null) StopCoroutine(coolDownlvlUp);
+            if (ouvrir)
+            {
+                coolDownlvlUp = CoolDownLvlUp();
+                StartCoroutine(coolDownlvlUp);
+                peutCloner = false;
+            }
+            else LancerCoolDownClonage(0.01f);
+
+            interfaceLvlUp.gameObject.SetActive(ouvrir);
+            Time.timeScale = ouvrir ? 0 : 1;
+        }
+
+        
+
+        private void VerifLevelUp()
+        {
+            if (nbrViandes >= viandesPourLvlUp && !interfaceLvlUp.gameObject.activeSelf)
+            {
+                nbrViandes = viandesPourLvlUp - nbrViandes;
+                OuvrirInterfaceLvlUp(true);
+            }
         }
         
         private IEnumerator CoolDownLvlUp()
@@ -156,5 +186,7 @@ namespace Acteurs
         {
             GameManager.AjouterScore();
         }
+        
+        #endregion
     }
 }

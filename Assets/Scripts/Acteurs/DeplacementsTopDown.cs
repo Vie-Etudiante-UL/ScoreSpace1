@@ -16,6 +16,8 @@ namespace Acteurs
         [Tooltip("en m par s")]
         [SerializeField] private float deceleration;
 
+        public bool peutSeDeplacer = true;
+        
         private Vector2 direction;
 
         public Vector2 Direction
@@ -51,6 +53,11 @@ namespace Acteurs
 
         private void SeDeplacer()
         {
+            if (!peutSeDeplacer)
+            {
+                rb.velocity = Vector2.zero;
+                return;
+            }
             Vector2 velocite = rb.velocity;
             if (direction.magnitude > 0)
             {
