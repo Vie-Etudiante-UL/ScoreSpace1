@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using TMPro;
 using UnityEngine.UI;
 
 public class PlayfabManager : MonoBehaviour
 {
     public GameObject rowPrefab;
     public Transform rowsParent;
+    private List<LigneScore> listLigneScore = new List<LigneScore>();
     
     private static PlayfabManager cela;
 
@@ -90,15 +92,25 @@ public class PlayfabManager : MonoBehaviour
 
     void OnLeaderboardGet(GetLeaderboardResult result)
     {
+        CleanListScore();
         foreach (var item in result.Leaderboard)
         {
-            GameObject newGo = Instantiate(rowPrefab, rowsParent);
-            Text[] texts = newGo.GetComponentsInChildren<Text>();
-            texts[0].text = item.Position.ToString();
-            texts[1].text = item.PlayFabId;
-            texts[1].text = item.StatValue.ToString();
-            
-            Debug.Log(item.Position + " " + item.PlayFabId + " " + item.StatValue);
+            if (Instantiate(rowPrefab, rowsParent).TryGetComponent(out LigneScore ligne))
+            {
+                ligne.position.text = (item.Position + 1).ToString();
+                ligne.nom.text = item.PlayFabId;
+                ligne.score.text = item.StatValue.ToString();
+                listLigneScore.Add(ligne);
+            }
         }
+    }
+
+    void CleanListScore()
+    {
+        foreach (var item in listLigneScore)
+        {
+            Destroy(item.gameObject);
+        }
+        listLigneScore.Clear();
     }
 }
