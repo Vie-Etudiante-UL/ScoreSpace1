@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -27,6 +29,9 @@ namespace Acteurs
         [Header("Animations")] 
         [SerializeField] private SpriteRenderer sprRend;
         [SerializeField] private Aberation aberation;
+        
+        [Header("FeedBack")]
+        public static UnityEvent<int,int> quandAjouteViande = new UnityEvent<int, int>();
 
         private bool estActif;
 
@@ -82,6 +87,8 @@ namespace Acteurs
             
             estActif = false;
             deplacements.peutSeDeplacer = false;
+            
+            quandAjouteViande.Invoke(viandes.Count, (int)scoreViande - viandes.Count);
 
             UnityEvent[] eventsAberation = aberation.LancerAnim();
             eventsAberation[0].AddListener(() =>
@@ -96,7 +103,7 @@ namespace Acteurs
             });
             return quandAberationEstGrande;
         }
-        
+
         private void GererAllerRetour()
         {
             if (surLAller)
@@ -138,6 +145,11 @@ namespace Acteurs
                 else if (autre.TryGetComponent(out Soni soni))
                 {
                     if(!surLAller)soni.AssimilerClone(this, (int)scoreViande);
+                }
+
+                if (autre.gameObject.layer == 9)
+                {
+                    surLAller = false;
                 }
             }
         }

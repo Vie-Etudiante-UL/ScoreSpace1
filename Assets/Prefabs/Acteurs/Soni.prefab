@@ -192,12 +192,12 @@ MonoBehaviour:
   aberationChaireBase: {fileID: 9007863516375207103, guid: ee5c9bf30586760459b2f2fe5ff63ba4, type: 3}
   cloneBase: {fileID: 3638365804264007210, guid: b685808f27eefa94390eeb428e23841e, type: 3}
   peutCloner: 1
-  capaciteClone: 1
+  capaciteClone: 3
   viandesPourLvlUp: 15
   rayonSpawnClone: 2
   interfaceLvlUp: {fileID: 5375451559246489661}
   timer: {fileID: 2136492571062439631}
-  chairesPourLvlUp: 6
+  tmpsPourLvlUp: 2
 --- !u!114 &1035168507339063541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   vitesseMax: 8
   acceleration: 30
   deceleration: 60
-  peutSeDeplacer: 0
+  peutSeDeplacer: 1
 --- !u!1 &1035168507707022156
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -9169642733941721999, guid: 4c711d970e8f256438434289cc9c3a18, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

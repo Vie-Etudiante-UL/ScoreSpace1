@@ -47,7 +47,7 @@ namespace Acteurs
         [SerializeField] private Canvas interfaceLvlUp;
 
         [SerializeField] private Slider timer;
-        [SerializeField] private float chairesPourLvlUp;
+        [SerializeField] private float tmpsPourLvlUp;
         private IEnumerator coolDownlvlUp;
 
         protected override void OnValidate()
@@ -172,11 +172,11 @@ namespace Acteurs
         {
             float tmps = 0;
 
-            while (tmps < chairesPourLvlUp)
+            while (tmps < tmpsPourLvlUp)
             {
                 yield return new WaitForEndOfFrame();
                 tmps += Time.unscaledDeltaTime;
-                timer.value = Mathf.Lerp(0, 1, tmps / chairesPourLvlUp);
+                timer.value = Mathf.Lerp(0, 1, tmps / tmpsPourLvlUp);
             }
             OuvrirInterfaceLvlUp(false);
 

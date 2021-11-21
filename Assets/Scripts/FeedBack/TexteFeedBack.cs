@@ -44,6 +44,7 @@ public class TexteFeedBack : MonoBehaviour
     
     private IEnumerator RoutineAffichage(float tmpsAffichage, params OptionsTexteFB[] options)
     {
+        Vector3 posDepart = texte.transform.position;
         float tmps = 0;
         while (tmps <= tmpsAffichage)
         {
@@ -53,7 +54,7 @@ public class TexteFeedBack : MonoBehaviour
             #region Application Des Options
             
             Color nvlleColeur = texte.color;
-            Vector3 posDepart = texte.transform.position;
+            
             float tmpsNorm = tmps / tmpsAffichage;
             
             foreach (var option in options)
@@ -81,12 +82,13 @@ public class TexteFeedBack : MonoBehaviour
                             float pas = (tmpsNorm - fondu.prcentDebutFondu) / 1 /
                                         (fondu.prcentFinFondu - fondu.prcentDebutFondu);
                             
-                            nvlleColeur.a = fondu.arriveeFondu ? Mathf.Lerp(0, 1, pas) : Mathf.Lerp(1, 0, pas);    
+                            nvlleColeur.a = fondu.FadeIn ? Mathf.Lerp(0, 1, pas) : Mathf.Lerp(1, 0, pas);    
                         }
                         break;
                     }
                     case Deplacement deplacement:
                     {
+                        Debug.DrawLine(posDepart,posDepart+(Vector3)deplacement.decalage);
                         texte.transform.position = Vector3.Lerp(posDepart, posDepart + (Vector3)deplacement.decalage, tmpsNorm);
                         break;
                     }
@@ -142,13 +144,13 @@ public class TexteFeedBack : MonoBehaviour
 
     public class Fondu : OptionsTexteFB
     {
-        public bool arriveeFondu;
+        public bool FadeIn;
         public float prcentDebutFondu; 
         public float prcentFinFondu; 
 
-        public Fondu(float prcentDebutFondu = 0, float _prcentFinFondu = 1, bool _arriveeFondu = true)
+        public Fondu(float prcentDebutFondu = 0, float _prcentFinFondu = 1, bool _fadeIn = true)
         {
-            arriveeFondu = _arriveeFondu;
+            FadeIn = _fadeIn;
             prcentDebutFondu = prcentDebutFondu;
             prcentFinFondu = _prcentFinFondu;
         }

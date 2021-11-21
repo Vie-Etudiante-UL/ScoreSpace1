@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
 
     public void Relancer()
     {
+        score = 0;
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
