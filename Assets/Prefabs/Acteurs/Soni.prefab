@@ -171,9 +171,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.007128, y: 1.007128}
-  m_Direction: 0
+  m_Offset: {x: 0.000000029810263, y: 0.25006664}
+  m_Size: {x: 0.76433647, y: 0.500939}
+  m_Direction: 1
 --- !u!114 &1035168507339063542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,9 +189,12 @@ MonoBehaviour:
   rb: {fileID: 1035168507339063540}
   deplacements: {fileID: 1035168507339063538}
   controles: {fileID: 1035168507339063541}
+  aberationChaireBase: {fileID: 9007863516375207103, guid: ee5c9bf30586760459b2f2fe5ff63ba4, type: 3}
   cloneBase: {fileID: 3638365804264007210, guid: b685808f27eefa94390eeb428e23841e, type: 3}
   peutCloner: 1
+  capaciteClone: 1
   viandesPourLvlUp: 15
+  rayonSpawnClone: 0.7
   interfaceLvlUp: {fileID: 5375451559246489661}
   timer: {fileID: 2136492571062439631}
   tmpsPourLvlUp: 2
@@ -239,6 +242,7 @@ MonoBehaviour:
   vitesseMax: 8
   acceleration: 20
   deceleration: 30
+  peutSeDeplacer: 0
 --- !u!1 &1035168507707022156
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +254,7 @@ GameObject:
   - component: {fileID: 1035168507707022158}
   - component: {fileID: 1035168507707022157}
   m_Layer: 6
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,8 +314,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.8679245, g: 0.3725525, b: 0.3725525, a: 1}
+  m_Sprite: {fileID: -8507699724601911013, guid: 77f3084c16c6bc64b8a08eb542dbd4fe, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

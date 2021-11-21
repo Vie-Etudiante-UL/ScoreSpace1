@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: c41c90793dd453e44913f5326248ce60
+guid: 1442ae3cf0051d64a9075be3a88b2fc8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2513334953976958883
-    second: Scientifique_0
+      213: 101335682932038933
+    second: ChaireAberation_0
   - first:
-      213: 1499572633591338230
-    second: Scientifique_1
+      213: 3812895268934244502
+    second: ChaireAberation_1
   - first:
-      213: 3583887032750059577
-    second: Scientifique_2
+      213: 7684556897569742933
+    second: ChaireAberation_2
+  - first:
+      213: -6037150572785949070
+    second: ChaireAberation_3
+  - first:
+      213: 3534878074504982715
+    second: ChaireAberation_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -124,54 +130,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Scientifique_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3af8e5d03d821e220800000000000000
-      internalID: 2513334953976958883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Scientifique_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 16
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f4db1c7d5d8fc410800000000000000
-      internalID: 1499572633591338230
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Scientifique_2
+      name: ChaireAberation_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
+        width: 24
         height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -180,8 +144,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 930323e94468cb130800000000000000
-      internalID: 3583887032750059577
+      spriteID: 51d5c384444086100800000000000000
+      internalID: 101335682932038933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChaireAberation_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 24
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698d796ab002ae430800000000000000
+      internalID: 3812895268934244502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChaireAberation_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5502ce7a8c705aa60800000000000000
+      internalID: 7684556897569742933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChaireAberation_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2762c8d4a8bb73ca0800000000000000
+      internalID: -6037150572785949070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChaireAberation_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 24
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb0bf2351e86e0130800000000000000
+      internalID: 3534878074504982715
       vertices: []
       indices: 
       edges: []
@@ -189,7 +237,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ac2ea14000d2dec4aa555f2400add948
+    spriteID: dab38daf08cf8eb409afb1c2547b87e3
     internalID: 0
     vertices: []
     indices: 
