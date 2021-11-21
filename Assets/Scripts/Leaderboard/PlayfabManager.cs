@@ -8,10 +8,19 @@ using UnityEngine.UI;
 
 public class PlayfabManager : MonoBehaviour
 {
+    [Header("Fenêtres")] 
+    public GameObject nameWindow;
+    public GameObject leaderboardWindow;
+    public GameObject loggingInWindow;
+    
+    [Header("Leaderboard")]
     public GameObject rowPrefab;
     public Transform rowsParent;
-    private List<LigneScore> listLigneScore = new List<LigneScore>();
+
+    [Header("Fenêtre de nom")] 
+    public TMP_InputField nameInput;
     
+    private List<LigneScore> listLigneScore = new List<LigneScore>();
     private static PlayfabManager cela;
 
     public static PlayfabManager Singleton
@@ -28,6 +37,9 @@ public class PlayfabManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        leaderboardWindow.SetActive(false);
+        nameWindow.SetActive(false);
+        loggingInWindow.SetActive(true);
         Login();
     }
 
@@ -42,14 +54,35 @@ public class PlayfabManager : MonoBehaviour
         var request = new LoginWithCustomIDRequest
         {
             CustomId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
+            CreateAccount = true,
+            InfoRequestParameters = new GetPlayerCombinedInfoRequestParams
+            {
+                GetPlayerProfile = true
+            }
+            
         };
-        PlayFabClientAPI.LoginWithCustomID(request, OnSucess, OnError);
+        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSucess, OnError);
     }
 
-    void OnSucess(LoginResult result)
+    void OnLoginSucess(LoginResult result)
     {
-        Debug.Log("Loggé !");
+        Debug.Log("Bien loggé / compte crée !");
+        string name = null;
+        if (result.InfoResultPayload.PlayerProfile != null)
+        { 
+            name = result.InfoResultPayload.PlayerProfile.DisplayName;
+        }
+        
+        loggingInWindow.SetActive(false);
+
+        if (name == null)
+        {
+            nameWindow.SetActive(true);
+        }
+        else
+        {
+            leaderboardWindow.SetActive(true);
+        }
     }
     
     void OnError(PlayFabError error)
@@ -58,6 +91,21 @@ public class PlayfabManager : MonoBehaviour
         Debug.Log(error.GenerateErrorReport());
     }
 
+    public void SumbitNameButton()
+    {
+        var request = new UpdateUserTitleDisplayNameRequest
+        {
+            DisplayName = nameInput.text,
+        };
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+    }
+
+    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
+    {
+        Debug.Log("Nom mis à jour !");
+        nameWindow.SetActive(false);
+        leaderboardWindow.SetActive(true);
+    }
     public void SendLeaderboard(int score)
     {
         var request = new UpdatePlayerStatisticsRequest
@@ -72,6 +120,19 @@ public class PlayfabManager : MonoBehaviour
             }
         };
         PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnError);
+    }
+
+    public void OnRenameClick()
+    {
+        leaderboardWindow.SetActive(false);
+        nameWindow.SetActive(true);
+    }
+
+    public void OnSkipNameClick()
+    {
+        nameWindow.SetActive(false);
+        leaderboardWindow.SetActive(true);
+
     }
 
     void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
@@ -90,6 +151,34 @@ public class PlayfabManager : MonoBehaviour
         PlayFabClientAPI.GetLeaderboard(request, OnLeaderboardGet, OnError);
     }
 
+    public void GetLeaderAroundPlayer()
+    {
+        var request = new GetLeaderboardAroundPlayerRequest
+        {
+            StatisticName = "Score",
+            MaxResultsCount = 10
+        };
+        PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnLeaderboardAroundPlayerGet, OnError);
+    }
+    
+    void OnLeaderboardAroundPlayerGet(GetLeaderboardAroundPlayerResult result)
+    {
+        CleanListScore();
+        foreach (var item in result.Leaderboard)
+        {
+            if (Instantiate(rowPrefab, rowsParent).TryGetComponent(out LigneScore ligne))
+            {
+                ligne.position.text = (item.Position + 1).ToString();
+                if (item.DisplayName != null)
+                    ligne.nom.text = item.DisplayName;
+                else
+                    ligne.nom.text = item.PlayFabId;
+                ligne.score.text = item.StatValue.ToString();
+                listLigneScore.Add(ligne);
+            }
+        }
+    }
+
     void OnLeaderboardGet(GetLeaderboardResult result)
     {
         CleanListScore();
@@ -98,7 +187,10 @@ public class PlayfabManager : MonoBehaviour
             if (Instantiate(rowPrefab, rowsParent).TryGetComponent(out LigneScore ligne))
             {
                 ligne.position.text = (item.Position + 1).ToString();
-                ligne.nom.text = item.PlayFabId;
+                if (item.DisplayName != null)
+                    ligne.nom.text = item.DisplayName;
+                else
+                    ligne.nom.text = item.PlayFabId;
                 ligne.score.text = item.StatValue.ToString();
                 listLigneScore.Add(ligne);
             }
