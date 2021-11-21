@@ -16,10 +16,12 @@ public class PlayfabManager : MonoBehaviour
     [Header("Leaderboard")]
     public GameObject rowPrefab;
     public Transform rowsParent;
+    public Color colorSelf = Color.white;
 
     [Header("Fenêtre de nom")] 
     public TMP_InputField nameInput;
-    
+
+    private string playerID;
     private List<LigneScore> listLigneScore = new List<LigneScore>();
     private static PlayfabManager cela;
 
@@ -67,6 +69,7 @@ public class PlayfabManager : MonoBehaviour
     void OnLoginSucess(LoginResult result)
     {
         Debug.Log("Bien loggé / compte crée !");
+        playerID = result.PlayFabId;
         string name = null;
         if (result.InfoResultPayload.PlayerProfile != null)
         { 
@@ -172,8 +175,15 @@ public class PlayfabManager : MonoBehaviour
                 if (item.DisplayName != null)
                     ligne.nom.text = item.DisplayName;
                 else
-                    ligne.nom.text = item.PlayFabId;
+                    ligne.nom.text = "Anonymous";
                 ligne.score.text = item.StatValue.ToString();
+
+                if (item.PlayFabId == playerID)
+                {
+                    ligne.nom.color = colorSelf;
+                    ligne.position.color = colorSelf;
+                }
+                
                 listLigneScore.Add(ligne);
             }
         }
@@ -190,9 +200,15 @@ public class PlayfabManager : MonoBehaviour
                 if (item.DisplayName != null)
                     ligne.nom.text = item.DisplayName;
                 else
-                    ligne.nom.text = item.PlayFabId;
+                    ligne.nom.text = "Anonymous ";
                 ligne.score.text = item.StatValue.ToString();
                 listLigneScore.Add(ligne);
+                if (item.PlayFabId == playerID)
+                {
+                    ligne.nom.color = colorSelf;
+                    ligne.position.color = colorSelf;
+                }
+                
             }
         }
     }
