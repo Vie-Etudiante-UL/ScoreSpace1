@@ -141,11 +141,9 @@ namespace Acteurs
             estActif = false;
             scienti.SeFaireManger().AddListener(() =>
             {
-                estActif = true;
                 AjouterViande();
             });
             
-            sprRend.gameObject.SetActive(false);
             estActif = false;
             deplacements.peutSeDeplacer = false;
             
@@ -154,10 +152,9 @@ namespace Acteurs
             {
                 estActif = true;
                 deplacements.peutSeDeplacer = true;
-                sprRend.gameObject.SetActive(true);
+                surLAller = false;
+                print(deplacements.peutSeDeplacer);    
             });
-            
-            surLAller = false;
         }
     }
 }

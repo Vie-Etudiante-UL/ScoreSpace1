@@ -15,7 +15,6 @@ public class Aberation : MonoBehaviour
     private void Awake()
     {
         gameObject.SetActive(false);
-
     }
 
     // Start is called before the first frame update
@@ -36,13 +35,14 @@ public class Aberation : MonoBehaviour
         quandAberationEstGrande.RemoveAllListeners();
         quandAberationEstMort.RemoveAllListeners();
         
-        animator.SetTrigger("Reinit");
+        animator.Play("CroissanceChaire");
         return new[] {quandAberationEstGrande, quandAberationEstMort};
     }
 
     private void AberationEstGrande()
     {
         quandAberationEstGrande.Invoke();
+        print("Aberation est grande");
     }
 
     private void AberationMeurt()

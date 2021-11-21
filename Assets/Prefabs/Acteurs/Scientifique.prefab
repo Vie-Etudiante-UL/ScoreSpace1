@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1148061412954179537}
-  vitesseMax: 8
+  vitesseMax: 5
   acceleration: 30
   deceleration: 30
   peutSeDeplacer: 1
@@ -214,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7016656863699734916, guid: ee5c9bf30586760459b2f2fe5ff63ba4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7016656863699734916, guid: ee5c9bf30586760459b2f2fe5ff63ba4, type: 3}
       propertyPath: m_LocalRotation.w
