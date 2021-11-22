@@ -24,7 +24,7 @@ public class PlayfabManager : MonoBehaviour
     [Header("Fenêtre de nom")] 
     public TMP_InputField nameInput;
 
-    private string playerID;
+    public string playerID;
     private List<LigneScore> listLigneScore = new List<LigneScore>();
     private static PlayfabManager cela;
 
@@ -37,6 +37,12 @@ public class PlayfabManager : MonoBehaviour
 
             return cela;
         }
+    }
+
+    public bool isLogged()
+    {
+        Debug.Log(PlayFabAuthenticationAPI.IsEntityLoggedIn());
+        return PlayFabAuthenticationAPI.IsEntityLoggedIn();
     }
     
     // Start is called before the first frame update
