@@ -128,12 +128,12 @@ public class Overlay : MonoBehaviour
         if (TexteFeedBack.GenererTexteFB(texteFB, spawnScoreViande.position, 3f, 
             out TextMeshProUGUI tMP,
             new TexteFeedBack.Fondu(0.95f, _fadeIn:false),
-            new TexteFeedBack.Fondu(_prcentFinFondu: 0.2f),
+            new TexteFeedBack.Fondu(_prcentFinFondu: 0.05f),
             new TexteFeedBack.Deplacement(Vector2.up * 60)))
         {
             tMP.color = couleurFBViande;
             tMP.fontStyle = FontStyles.Bold;
-            tMP.fontSize = 34;
+            tMP.fontSize = 38;
             tMP.alignment = TextAlignmentOptions.Center;
         }
     }

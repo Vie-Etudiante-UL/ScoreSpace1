@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float tmpsPourQuitter = 3f;
     private IEnumerator coolDownGameOver;
 
+    [SerializeField] private List<GameObject> nePasDetruirAuRestart = new List<GameObject>();
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -126,6 +128,10 @@ public class GameManager : MonoBehaviour
     
     public void Relancer()
     {
+        foreach (var go in nePasDetruirAuRestart)
+        {
+            DontDestroyOnLoad(go);
+        }
         score = 0;
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
@@ -135,6 +141,11 @@ public class GameManager : MonoBehaviour
 
     public void GoMainMenu()
     {
+        foreach (var go in nePasDetruirAuRestart)
+        {
+            Destroy(go);
+        }
+        
         score = 0;
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
