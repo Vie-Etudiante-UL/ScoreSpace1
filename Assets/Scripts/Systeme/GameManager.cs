@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject menuGameOver;
     [SerializeField] private GameObject menuLeaderboard;
     [SerializeField] private GameObject interfaceJeu;
-    [SerializeField] private GameObject menuPause;
     private bool isPaused = false;
 
     [SerializeField] private TextMeshProUGUI texteScore;
@@ -50,22 +49,16 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         mmaximumDelai = secondesEntreSpawn;
-        menuPause.SetActive(false);
         interfaceJeu.SetActive(true);
         menuGameOver.SetActive(false);
         if(menuLeaderboard)menuLeaderboard.SetActive(false);
         LoopFacteurSpawn();
-        isPaused = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused) Resume();
-            else Pause();
-        }
+
     }
 
     public static void AjouterScore()
@@ -130,20 +123,7 @@ public class GameManager : MonoBehaviour
         
         Relancer();
     }
-
-    public void Pause()
-    {
-        Time.timeScale = 0;
-        isPaused = true;
-        menuPause.SetActive(true);
-    }
     
-    public void Resume()
-    {
-        isPaused = false;
-        Time.timeScale = 1;
-        menuPause.SetActive(false);
-    }
     
     public void Relancer()
     {
