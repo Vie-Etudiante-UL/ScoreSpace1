@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     
     [Header("Interface")] 
     [SerializeField] private GameObject menuGameOver;
+    [SerializeField] private GameObject menuLeaderboard;
     [SerializeField] private TextMeshProUGUI texteScore;
     [SerializeField] private Slider timer;
     [SerializeField] private float tmpsPourQuitter = 3f;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
     {
         mmaximumDelai = secondesEntreSpawn;
         menuGameOver.SetActive(false);
+        menuLeaderboard.SetActive(false);
         LoopFacteurSpawn();
     }
 
@@ -87,6 +89,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         menuGameOver.SetActive(true);
+        menuLeaderboard.SetActive(true);
         Time.timeScale = 0;
 
         texteScore.text = "YOUR SCORE :\n" + score;

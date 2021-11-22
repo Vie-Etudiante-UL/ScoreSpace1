@@ -4,6 +4,7 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayfabManager : MonoBehaviour
@@ -12,11 +13,13 @@ public class PlayfabManager : MonoBehaviour
     public GameObject nameWindow;
     public GameObject leaderboardWindow;
     public GameObject loggingInWindow;
-    
+    public GameObject menuWindow;
+
     [Header("Leaderboard")]
     public GameObject rowPrefab;
     public Transform rowsParent;
     public Color colorSelf = Color.white;
+    public int typeOfLeaderboard;
 
     [Header("Fenêtre de nom")] 
     public TMP_InputField nameInput;
@@ -39,10 +42,12 @@ public class PlayfabManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         leaderboardWindow.SetActive(false);
         nameWindow.SetActive(false);
         loggingInWindow.SetActive(true);
         Login();
+        */
     }
 
     // Update is called once per frame
@@ -51,7 +56,7 @@ public class PlayfabManager : MonoBehaviour
         
     }
 
-    void Login()
+    public void Login()
     {
         var request = new LoginWithCustomIDRequest
         {
@@ -84,8 +89,19 @@ public class PlayfabManager : MonoBehaviour
         }
         else
         {
+            menuWindow.SetActive(true);
             leaderboardWindow.SetActive(true);
+            getLeaderboardByType(typeOfLeaderboard);
         }
+    }
+
+    public void getLeaderboardByType(int type)
+    {
+        if (type == 0)
+            GetLeaderboard();
+        if(type == 1)
+            GetLeaderAroundPlayer();
+            
     }
     
     void OnError(PlayFabError error)
@@ -108,6 +124,8 @@ public class PlayfabManager : MonoBehaviour
         Debug.Log("Nom mis à jour !");
         nameWindow.SetActive(false);
         leaderboardWindow.SetActive(true);
+        menuWindow.SetActive(true);
+            getLeaderboardByType(typeOfLeaderboard);
     }
     public void SendLeaderboard(int score)
     {
@@ -135,6 +153,7 @@ public class PlayfabManager : MonoBehaviour
     {
         nameWindow.SetActive(false);
         leaderboardWindow.SetActive(true);
+        getLeaderboardByType(typeOfLeaderboard);
 
     }
 
