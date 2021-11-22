@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     {
         mmaximumDelai = secondesEntreSpawn;
         menuGameOver.SetActive(false);
-        menuLeaderboard.SetActive(false);
+        if(menuLeaderboard)menuLeaderboard.SetActive(false);
         LoopFacteurSpawn();
     }
 
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         menuGameOver.SetActive(true);
-        menuLeaderboard.SetActive(true);
+        if(menuLeaderboard)menuLeaderboard.SetActive(true);
         Time.timeScale = 0;
 
         texteScore.text = "YOUR SCORE :\n" + score;
