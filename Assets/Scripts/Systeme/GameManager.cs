@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     [Header("Interface")] 
     [SerializeField] private GameObject menuGameOver;
     [SerializeField] private GameObject menuLeaderboard;
+    [SerializeField] private GameObject interfaceJeu;
     [SerializeField] private TextMeshProUGUI texteScore;
     [SerializeField] private Slider timer;
     [SerializeField] private float tmpsPourQuitter = 3f;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         mmaximumDelai = secondesEntreSpawn;
+        interfaceJeu.SetActive(true);
         menuGameOver.SetActive(false);
         if(menuLeaderboard)menuLeaderboard.SetActive(false);
         LoopFacteurSpawn();
@@ -88,12 +90,18 @@ public class GameManager : MonoBehaviour
     
     public void GameOver()
     {
-        menuGameOver.SetActive(true);
-        if(menuLeaderboard)menuLeaderboard.SetActive(true);
         Time.timeScale = 0;
-
-        texteScore.text = "YOUR SCORE :\n" + score;
+        interfaceJeu.SetActive(false);
         
+        menuGameOver.SetActive(true);
+        texteScore.text = "Your score: " + score;
+
+        if (PlayfabManager.Singleton.isLogged())
+        {
+            if(menuLeaderboard)menuLeaderboard.SetActive(true);
+            PlayfabManager.Singleton.SendLeaderboard(score);
+            PlayfabManager.Singleton.getLeaderboardByType(1);
+        }
         if(coolDownGameOver != null) StopCoroutine(coolDownGameOver);
         coolDownGameOver = CoolDownGameOver();
         StartCoroutine(coolDownGameOver);
@@ -119,6 +127,15 @@ public class GameManager : MonoBehaviour
         score = 0;
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
+        interfaceJeu.SetActive(false);
+
+    }
+
+    public void GoMainMenu()
+    {
+        score = 0;
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
     
     public void QuitterJeu()

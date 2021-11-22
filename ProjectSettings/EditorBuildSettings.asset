@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: b41d6acaf8ba5c2479e18eb689d6c8ed
   - enabled: 1
+    path: Assets/Scenes/Antoine.unity
+    guid: cee00f256e882a04a8d9262cb395fc6c
+  - enabled: 1
     path: Assets/Scenes/Leo.unity
     guid: 3deecc6e52909ee4d9209c59998a4ab1
   m_configObjects: {}
