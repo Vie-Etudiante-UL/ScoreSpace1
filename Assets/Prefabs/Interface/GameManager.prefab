@@ -614,6 +614,8 @@ MonoBehaviour:
   minimumDelai: 0.2
   palier: 30
   menuGameOver: {fileID: 3364852788378110695}
+  menuLeaderboard: {fileID: 0}
+  interfaceJeu: {fileID: 0}
   texteScore: {fileID: 3364852788921444442}
   timer: {fileID: 3364852790303123153}
   tmpsPourQuitter: 3
@@ -684,8 +686,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 353434847bb59654ca15e20834f9282e, type: 2}
+  m_sharedMaterial: {fileID: -4702764535420586017, guid: 353434847bb59654ca15e20834f9282e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
