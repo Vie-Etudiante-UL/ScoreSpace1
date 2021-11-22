@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     
     public void QuitterJeu()
