@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6453490779350926828}
-  vitesseMax: 8
+  vitesseMax: 10
   acceleration: 40
   deceleration: 30
   peutSeDeplacer: 1
@@ -93,7 +93,7 @@ MonoBehaviour:
   deplacements: {fileID: 8475104342363250149}
   distanceCourseMax: 15
   distanceParcourue: 0
-  rayonDetection: 1
+  rayonDetection: 1.5
   accumulateurViande: {fileID: 3660253173290622108}
   viandeBase: {fileID: 1123864139415376665, guid: 47a5d8aabb0ee6045a2fcb86e24a0726, type: 3}
   multScoreViande: 1.5
