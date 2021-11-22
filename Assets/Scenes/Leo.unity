@@ -344,9 +344,10 @@ GameObject:
   m_Component:
   - component: {fileID: 568776379}
   - component: {fileID: 568776378}
+  - component: {fileID: 568776380}
   m_Layer: 0
   m_Name: Musique
-  m_TagString: Untagged
+  m_TagString: Musique
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -461,6 +462,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568776380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568776377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8a4299f27b69a49801cfe29883f35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &792825024
 GameObject:
   m_ObjectHideFlags: 0
@@ -16646,6 +16659,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 209497761223367552, guid: afe95cbf0a88fd44fa13a5d7b64d0d69, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4702764535420586017, guid: 353434847bb59654ca15e20834f9282e, type: 2}
+    - target: {fileID: 209497761223367552, guid: afe95cbf0a88fd44fa13a5d7b64d0d69, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 209497761484493464, guid: afe95cbf0a88fd44fa13a5d7b64d0d69, type: 3}
       propertyPath: m_text
       value: MENU
@@ -16662,6 +16683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManagerNew
       objectReference: {fileID: 0}
+    - target: {fileID: 209497761558500349, guid: afe95cbf0a88fd44fa13a5d7b64d0d69, type: 3}
+      propertyPath: musique
+      value: 
+      objectReference: {fileID: 568776378}
     - target: {fileID: 209497761558500349, guid: afe95cbf0a88fd44fa13a5d7b64d0d69, type: 3}
       propertyPath: menuLeaderboard
       value: 
@@ -16772,6 +16797,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 209497762816206128, guid: afe95cbf0a88fd44fa13a5d7b64d0d69, type: 3}
       propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 894874856518673708, guid: afe95cbf0a88fd44fa13a5d7b64d0d69, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4702764535420586017, guid: 353434847bb59654ca15e20834f9282e, type: 2}
+    - target: {fileID: 894874856518673708, guid: afe95cbf0a88fd44fa13a5d7b64d0d69, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

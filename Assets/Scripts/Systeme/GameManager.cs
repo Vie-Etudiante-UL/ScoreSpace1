@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Permissions;
 using TMPro;
 using UnityEngine;
@@ -45,9 +47,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float tmpsPourQuitter = 3f;
     private IEnumerator coolDownGameOver;
 
-    [SerializeField] private AudioSource musique;
-
-    private static AudioSource musiqueMaintenue;
+    private void Awake()
+    {
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -130,15 +132,7 @@ public class GameManager : MonoBehaviour
     
     public void Relancer()
     {
-        if (!musiqueMaintenue)
-        {
-            DontDestroyOnLoad(musique.gameObject);
-            musiqueMaintenue = musique;
-        }
-        else
-        {
-            Destroy(musique.gameObject);
-        }
+        
         score = 0;
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
@@ -148,12 +142,7 @@ public class GameManager : MonoBehaviour
 
     public void GoMainMenu()
     {
-        if (musiqueMaintenue)
-        {
-            Destroy(musiqueMaintenue.gameObject);
-            musiqueMaintenue = null;
-        }
-        
+        Destroy(GameObject.FindGameObjectWithTag("Musique"));
         score = 0;
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
