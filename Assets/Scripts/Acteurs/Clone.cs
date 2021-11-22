@@ -29,12 +29,12 @@ namespace Acteurs
         [Header("Animations")] 
         [SerializeField] private SpriteRenderer sprRend;
         [SerializeField] private Aberation aberation;
+        [SerializeField] private UnityEvent quandRameneViande = new UnityEvent();
         
         [Header("FeedBack")]
         public static UnityEvent<int,int> quandAjouteViande = new UnityEvent<int, int>();
 
         private bool estActif;
-
 
         private bool surLAller = true;
 
@@ -171,6 +171,7 @@ namespace Acteurs
             });
             eventsAberation[1].AddListener(() =>
             {
+                quandRameneViande.Invoke();
                 estActif = true;
                 deplacements.peutSeDeplacer = true;
                 surLAller = false;

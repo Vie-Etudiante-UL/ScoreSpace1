@@ -87,6 +87,7 @@ namespace Acteurs
                     sprRend.flipX = false;
                     continue;
                 }
+                
                 sprRend.flipX = direction == Direction.gauche;
                 sprRend.flipX = inverserFlip ? !sprRend.flipX : sprRend.flipX;
             }

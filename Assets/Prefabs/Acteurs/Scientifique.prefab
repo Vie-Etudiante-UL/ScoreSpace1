@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 760248153246913945}
   - component: {fileID: 2388998672687382360}
   - component: {fileID: 8542883067197287519}
+  - component: {fileID: 5927572833535603508}
+  - component: {fileID: 2114631445830992509}
   m_Layer: 8
   m_Name: Scientifique
   m_TagString: Untagged
@@ -189,6 +191,47 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.18822646}
   m_Size: {x: 0.7041275, y: 0.37168714}
   m_Direction: 1
+--- !u!95 &5927572833535603508
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817879139118865228}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e10887fbcd45bed40a8f95c60d8724a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2114631445830992509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817879139118865228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21d4f248f98a4942bd90a4a5095c034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deplacements: {fileID: 760248153246913945}
+  animator: {fileID: 5927572833535603508}
+  spritesAFlip:
+  - {fileID: 6235783183117886837}
+  inverserFlip: 0
+  modeDeplacement: 0
+  paramAvancer: Avancer
+  paramHorizontal: Horizontal
+  paramHaut: Haut
+  paramBas: Bas
 --- !u!1001 &4914733073042511796
 PrefabInstance:
   m_ObjectHideFlags: 0

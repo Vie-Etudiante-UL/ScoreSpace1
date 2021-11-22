@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8475104342363250149}
   - component: {fileID: 3638365804264007210}
   - component: {fileID: 465572480242685650}
+  - component: {fileID: -6137459383037450580}
+  - component: {fileID: 7438099367571369111}
   m_Layer: 7
   m_Name: Clone
   m_TagString: Untagged
@@ -98,6 +100,21 @@ MonoBehaviour:
   decalageVerticalViandes: 0.3
   sprRend: {fileID: 2890507858907829066}
   aberation: {fileID: 8510159425873725877}
+  quandRameneViande:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7438099367571369111}
+        m_TargetAssemblyTypeName: Acteurs.AnimationsTopDown, Assembly-CSharp
+        m_MethodName: set_ModeDeplacement
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!70 &465572480242685650
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -114,6 +131,47 @@ CapsuleCollider2D:
   m_Offset: {x: 0.000000017590377, y: 0.1475588}
   m_Size: {x: 0.6792441, y: 0.2790235}
   m_Direction: 1
+--- !u!95 &-6137459383037450580
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764613326435841993}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ee67ae7508b39f24ab8c37dca4a1b642, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7438099367571369111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764613326435841993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21d4f248f98a4942bd90a4a5095c034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deplacements: {fileID: 8475104342363250149}
+  animator: {fileID: -6137459383037450580}
+  spritesAFlip:
+  - {fileID: 2890507858907829066}
+  inverserFlip: 0
+  modeDeplacement: 0
+  paramAvancer: Avancer
+  paramHorizontal: Horizontal
+  paramHaut: Haut
+  paramBas: Bas
 --- !u!1 &4483377601531230042
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +273,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9169642733941721999, guid: 4c711d970e8f256438434289cc9c3a18, type: 3}
+  m_Sprite: {fileID: 1682102364292466221, guid: d08f832aa952bc4409e1919ce8a829c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -251,7 +309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7016656863699734916, guid: ee5c9bf30586760459b2f2fe5ff63ba4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.001
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7016656863699734916, guid: ee5c9bf30586760459b2f2fe5ff63ba4, type: 3}
       propertyPath: m_LocalRotation.w
