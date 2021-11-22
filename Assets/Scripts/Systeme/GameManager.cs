@@ -45,7 +45,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float tmpsPourQuitter = 3f;
     private IEnumerator coolDownGameOver;
 
-    [SerializeField] private List<GameObject> nePasDetruirAuRestart = new List<GameObject>();
+    [SerializeField] private AudioSource musique;
+
+    private static AudioSource musiqueMaintenue;
 
     // Start is called before the first frame update
     private void Start()
@@ -128,9 +130,14 @@ public class GameManager : MonoBehaviour
     
     public void Relancer()
     {
-        foreach (var go in nePasDetruirAuRestart)
+        if (!musiqueMaintenue)
         {
-            DontDestroyOnLoad(go);
+            DontDestroyOnLoad(musique.gameObject);
+            musiqueMaintenue = musique;
+        }
+        else
+        {
+            Destroy(musique.gameObject);
         }
         score = 0;
         Time.timeScale = 1;
@@ -141,9 +148,10 @@ public class GameManager : MonoBehaviour
 
     public void GoMainMenu()
     {
-        foreach (var go in nePasDetruirAuRestart)
+        if (musiqueMaintenue)
         {
-            Destroy(go);
+            Destroy(musiqueMaintenue.gameObject);
+            musiqueMaintenue = null;
         }
         
         score = 0;
