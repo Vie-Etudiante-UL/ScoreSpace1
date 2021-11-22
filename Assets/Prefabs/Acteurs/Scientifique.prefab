@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1148061412954179537}
-  vitesseMax: 5
+  vitesseMax: 7
   acceleration: 30
   deceleration: 30
   peutSeDeplacer: 1
