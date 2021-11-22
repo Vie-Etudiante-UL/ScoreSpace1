@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
+using UnityEditor.U2D.Animation;
 //using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Events;
@@ -33,6 +34,8 @@ namespace Acteurs
         
         [Header("FeedBack")]
         public static UnityEvent<int,int> quandAjouteViande = new UnityEvent<int, int>();
+        [SerializeField] private UnityEvent quandToucheScienti = new UnityEvent();
+        [SerializeField] private UnityEvent quandEstLance = new UnityEvent();
 
         private bool estActif;
 
@@ -63,6 +66,7 @@ namespace Acteurs
 
         public UnityEvent Init(Vector2 direciton)
         {
+            quandEstLance.Invoke();
             UnityEvent quandAberationEstGrande = new UnityEvent();
             deplacements.Direction = direciton;
             sprRend.gameObject.SetActive(false);
@@ -155,6 +159,10 @@ namespace Acteurs
 
         private void AttaquerScientifique(Scientifique scienti)
         {
+            quandToucheScienti.Invoke();
+            
+            CameraMan.Singleton.ScreenShake(0.1f,0.1f);
+            
             estActif = false;
             scienti.SeFaireManger().AddListener(() =>
             {

@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime;
 using TMPro;
+using UnityEditor.U2D.Animation;
+using UnityEditor.U2D.Sprites;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Acteurs
@@ -49,6 +52,9 @@ namespace Acteurs
         [SerializeField] private Slider timer;
         [SerializeField] private float tmpsPourLvlUp;
         private IEnumerator coolDownlvlUp;
+        [Space] 
+        [SerializeField] private UnityEvent quandGagneViande = new UnityEvent();
+        [SerializeField] private UnityEvent quandGagnePointOuClone = new UnityEvent();
 
         protected override void OnValidate()
         {
@@ -92,6 +98,8 @@ namespace Acteurs
         private void ClonerTirer()
         {
             if (!peutCloner || capaciteClone <= clonesTires) return;
+            CameraMan.Singleton.ScreenShake(0.1f,0.1f);
+            
             if (Instantiate(cloneBase.gameObject, transform.position, new Quaternion())
                 .TryGetComponent(out Clone nvClone))
             {
@@ -111,8 +119,10 @@ namespace Acteurs
 
         public void AssimilerClone(Clone cloneAAssimiler, int nbrViande)
         {
+            CameraMan.Singleton.ScreenShake(0.1f,0.1f);
             cloneAAssimiler.EtreAssimiler().AddListener(() =>
             {
+                quandGagneViande.Invoke();
                 clonesTires--;
                 nbrViandes += nbrViande;
             });
@@ -120,6 +130,7 @@ namespace Acteurs
 
         public void AjouterCapaciteClone()
         {
+            quandGagnePointOuClone.Invoke();
             capaciteClone++;
         }
         
@@ -185,6 +196,7 @@ namespace Acteurs
 
         public void AjouterScore()
         {
+            quandGagnePointOuClone.Invoke();
             GameManager.AjouterScore();
         }
         
