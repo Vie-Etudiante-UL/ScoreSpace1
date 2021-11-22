@@ -41,6 +41,7 @@ public class PlayfabManager : MonoBehaviour
 
     public bool isLogged()
     {
+        Debug.Log("Coucou");
         Debug.Log(PlayFabAuthenticationAPI.IsEntityLoggedIn());
         return PlayFabAuthenticationAPI.IsEntityLoggedIn();
     }

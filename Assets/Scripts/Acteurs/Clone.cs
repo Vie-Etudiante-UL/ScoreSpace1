@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
-using UnityEditor.U2D.Animation;
+//using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;

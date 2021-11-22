@@ -94,7 +94,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         interfaceJeu.SetActive(false);
-        
         menuGameOver.SetActive(true);
         texteScore.text = "Your score: " + score;
 

@@ -17120,5 +17120,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeaderboardUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1271424475430349711, guid: 842185eda8fb7384f837273ff91a315d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 842185eda8fb7384f837273ff91a315d, type: 3}
