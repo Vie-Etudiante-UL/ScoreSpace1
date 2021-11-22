@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6453490779350926828}
   deplacements: {fileID: 8475104342363250149}
-  distanceCourseMax: 15
+  distanceCourseMax: 10
   distanceParcourue: 0
   rayonDetection: 1
   accumulateurViande: {fileID: 3660253173290622108}

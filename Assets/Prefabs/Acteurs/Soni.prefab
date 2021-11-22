@@ -354,8 +354,8 @@ MonoBehaviour:
   aberationChaireBase: {fileID: 9007863516375207103, guid: ee5c9bf30586760459b2f2fe5ff63ba4, type: 3}
   cloneBase: {fileID: 3638365804264007210, guid: b685808f27eefa94390eeb428e23841e, type: 3}
   peutCloner: 1
-  capaciteClone: 3
-  viandesPourLvlUp: 15
+  capaciteClone: 1
+  viandesPourLvlUp: 20
   rayonSpawnClone: 2
   interfaceLvlUp: {fileID: 5375451559246489661}
   timer: {fileID: 2136492571062439631}
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1035168507339063540}
-  vitesseMax: 8
+  vitesseMax: 6
   acceleration: 30
   deceleration: 60
   peutSeDeplacer: 1
